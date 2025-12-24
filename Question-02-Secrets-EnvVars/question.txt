@@ -1,0 +1,40 @@
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║ QUESTION 2: Secrets as Environment Variables                                 ║
+╠═══════════════════════════════════════════════════════════════════════════════╣
+║ Weight: ~7%                                                                   ║
+║ Domain: Application Environment, Configuration, and Security                 ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+SCENARIO:
+---------
+You need to deploy a pod that uses sensitive credentials stored in a Kubernetes secret.
+
+TASKS:
+------
+1. Create a secret named "db-credentials" in the default namespace with:
+   - Key: username, Value: admin
+   - Key: password, Value: secretpass123
+
+2. Create a pod with the following specifications:
+   - Pod name: env-secret-pod
+   - Image: busybox
+   - Container should run: sleep 3600
+   - Expose the secret values as environment variables:
+     * DB_USERNAME → from secret key "username"
+     * DB_PASSWORD → from secret key "password"
+
+3. Verify the pod is running and environment variables are correctly set
+
+NAMESPACE:
+----------
+default
+
+HINTS:
+------
+• Use kubectl create secret generic for creating secrets
+• Use secretKeyRef to reference secret keys in pod spec
+• Kubernetes docs: search for "secret key reference"
+
+VERIFICATION:
+-------------
+When complete, run: ./scripts/run-question.sh Question-02 verify

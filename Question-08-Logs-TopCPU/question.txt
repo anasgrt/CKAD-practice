@@ -1,0 +1,39 @@
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║ QUESTION 8: Retrieve Logs & Find Highest CPU Pod                             ║
+╠═══════════════════════════════════════════════════════════════════════════════╣
+║ Weight: ~5%                                                                   ║
+║ Domain: Application Observability and Maintenance                            ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+SCENARIO:
+---------
+You need to retrieve pod logs and identify resource-intensive pods.
+
+TASKS:
+------
+Task A: Deploy and retrieve logs
+1. Deploy the pod from manifest at: /tmp/ckad-q8/winter-pod.yaml
+2. Wait for the pod to complete its initialization
+3. Retrieve ALL logs from the pod
+4. Store the logs in: /opt/ckad/logs-output.txt
+
+Task B: Find highest CPU pod
+1. From pods running in namespace "cpu-stress"
+2. Identify the pod consuming the MOST CPU
+3. Write ONLY the pod name to: /opt/ckad/pod.txt
+
+NAMESPACES:
+-----------
+- Task A: default
+- Task B: cpu-stress
+
+HINTS:
+------
+• kubectl logs <pod-name> > /path/to/file
+• kubectl top pod -n <namespace> for CPU metrics
+• Use sort, head, and awk to process output
+• --no-headers flag removes column headers
+
+VERIFICATION:
+-------------
+When complete, run: ./scripts/run-question.sh Question-08 verify

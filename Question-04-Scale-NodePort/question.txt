@@ -1,0 +1,40 @@
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║ QUESTION 4: Scale Deployment & Create NodePort Service                       ║
+╠═══════════════════════════════════════════════════════════════════════════════╣
+║ Weight: ~7%                                                                   ║
+║ Domain: Application Deployment                                               ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+SCENARIO:
+---------
+An existing deployment needs to be modified and exposed via a NodePort service.
+
+TASKS:
+------
+1. Edit deployment "november-2025-deployment" in namespace "november-2025":
+   - Add a new label to the pod template: tier=frontend
+   - Scale the deployment to 4 replicas
+
+2. Create a NodePort service with these specifications:
+   - Service name: berry
+   - Namespace: november-2025
+   - Type: NodePort
+   - Port: 8080
+   - Target Port: 80
+   - Protocol: TCP
+   - Selector should target pods with label: tier=frontend
+
+NAMESPACE:
+----------
+november-2025
+
+HINTS:
+------
+• Add labels under spec.template.metadata.labels (pod template)
+• Service selector must match pod labels
+• NodePort is auto-assigned if not specified
+• Use kubectl edit deployment or kubectl scale
+
+VERIFICATION:
+-------------
+When complete, run: ./scripts/run-question.sh Question-04 verify

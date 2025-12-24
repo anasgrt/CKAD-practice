@@ -1,0 +1,42 @@
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║ QUESTION 3: RBAC - Role & RoleBinding for Deployments                        ║
+╠═══════════════════════════════════════════════════════════════════════════════╣
+║ Weight: ~8%                                                                   ║
+║ Domain: Application Environment, Configuration, and Security                 ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+SCENARIO:
+---------
+A pod in deployment "dev-deployment" (namespace: meta) is showing errors in logs:
+"Error: cannot list resource 'deployments' in namespace 'meta'"
+
+The default ServiceAccount in the "meta" namespace doesn't have permission 
+to list deployments.
+
+TASKS:
+------
+1. Create a Role named "deployment-reader" in namespace "meta" that allows:
+   - Resource: deployments
+   - Verbs: get, list, watch
+
+2. Create a RoleBinding named "deployment-reader-binding" that:
+   - Binds the Role "deployment-reader"
+   - To the ServiceAccount "default" in namespace "meta"
+
+3. Verify the fix by checking:
+   - The default SA can now list deployments
+   - Pod logs no longer show the error
+
+NAMESPACE:
+----------
+meta
+
+HINTS:
+------
+• Deployments are in the "apps" API group, not core
+• Use: kubectl auth can-i list deployments --as=system:serviceaccount:meta:default -n meta
+• You may need to delete the pod to restart it after fixing RBAC
+
+VERIFICATION:
+-------------
+When complete, run: ./scripts/run-question.sh Question-03 verify

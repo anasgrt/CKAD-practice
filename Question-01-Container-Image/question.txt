@@ -1,0 +1,35 @@
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║ QUESTION 1: Container Image Build & Export (OCI Format)                      ║
+╠═══════════════════════════════════════════════════════════════════════════════╣
+║ Weight: ~4%                                                                   ║
+║ Domain: Application Design and Build                                         ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+SCENARIO:
+---------
+There is a Dockerfile already prepared at /tmp/ckad-q1/Dockerfile
+
+TASKS:
+------
+1. Build a container image using the Dockerfile with:
+   - Image name: ckad-app
+   - Tag: 1.0
+
+2. Do NOT push the image to any registry
+
+3. Export the built container image in OCI format and store it at:
+   /tmp/ckad-output/ckad-app.tar
+
+TOOLS:
+------
+You may use any of the following tools: podman, docker, buildah, skopeo
+
+HINTS:
+------
+• Use the build command with -t flag for tagging
+• For OCI format export, check the --format flag
+• The output should be a .tar archive file
+
+VERIFICATION:
+-------------
+When complete, run: ./scripts/run-question.sh Question-01 verify

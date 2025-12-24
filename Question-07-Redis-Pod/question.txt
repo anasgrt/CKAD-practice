@@ -1,0 +1,34 @@
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║ QUESTION 7: Create Pod with Redis and Expose Port                            ║
+╠═══════════════════════════════════════════════════════════════════════════════╣
+║ Weight: ~4%                                                                   ║
+║ Domain: Application Design and Build                                         ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+SCENARIO:
+---------
+A web application requires Redis as a cache backend.
+
+TASKS:
+------
+Create a pod in namespace "web" with these specifications:
+
+- Pod name: cache
+- Image: redis:3.2
+- Container port: 6379 (expose this port)
+- Add label: app=cache
+- Pod should remain running when complete
+
+NAMESPACE:
+----------
+web
+
+HINTS:
+------
+• "Expose port" in a pod means containerPort, NOT creating a Service
+• Use kubectl run with --port flag or create manifest
+• Only create a Service if explicitly asked
+
+VERIFICATION:
+-------------
+When complete, run: ./scripts/run-question.sh Question-07 verify

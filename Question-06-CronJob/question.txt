@@ -1,0 +1,40 @@
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║ QUESTION 6: CronJob with Completions & Retry Limits                          ║
+╠═══════════════════════════════════════════════════════════════════════════════╣
+║ Weight: ~7%                                                                   ║
+║ Domain: Application Design and Build                                         ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+SCENARIO:
+---------
+Create a CronJob to periodically clean up logs in the production environment.
+
+TASKS:
+------
+Create a CronJob in namespace "production" with these specifications:
+
+- Name: log-cleaner
+- Container name: log
+- Image: busybox
+- Command: date
+- Schedule: Run every 30 minutes
+- Completions: Job must complete 2 times successfully
+- Retries: Maximum 3 retries on failure (backoffLimit)
+- Timeout: Terminate job if running longer than 30 seconds (activeDeadlineSeconds)
+- Restart Policy: OnFailure
+
+NAMESPACE:
+----------
+production
+
+HINTS:
+------
+• Schedule format: */30 * * * * (every 30 minutes)
+• completions and backoffLimit go under jobTemplate.spec
+• activeDeadlineSeconds also under jobTemplate.spec
+• restartPolicy under jobTemplate.spec.template.spec
+• Test with: kubectl create job --from=cronjob/log-cleaner test-job -n production
+
+VERIFICATION:
+-------------
+When complete, run: ./scripts/run-question.sh Question-06 verify

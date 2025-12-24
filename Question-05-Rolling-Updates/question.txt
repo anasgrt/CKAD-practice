@@ -1,0 +1,39 @@
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║ QUESTION 5: Rolling Updates, maxSurge/maxUnavailable & Rollback              ║
+╠═══════════════════════════════════════════════════════════════════════════════╣
+║ Weight: ~10%                                                                  ║
+║ Domain: Application Deployment                                               ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+SCENARIO:
+---------
+You have two deployments in namespace "nov-2025" that need various updates.
+
+TASKS:
+------
+Task 1: Edit deployment "app" and set:
+   - maxSurge: 5%
+   - maxUnavailable: 2%
+
+Task 2: Perform a rolling update on deployment "web":
+   - Update the nginx image to version 1.13
+   - Use kubectl set image command
+
+Task 3: Rollback deployment "app" to its previous version:
+   - The deployment was recently updated and needs to be rolled back
+   - Use kubectl rollout undo
+
+NAMESPACE:
+----------
+nov-2025
+
+HINTS:
+------
+• kubectl set image deployment/<n> <container>=<image>
+• kubectl rollout undo deployment/<n>
+• kubectl rollout history deployment/<n>
+• maxSurge and maxUnavailable are under spec.strategy.rollingUpdate
+
+VERIFICATION:
+-------------
+When complete, run: ./scripts/run-question.sh Question-05 verify

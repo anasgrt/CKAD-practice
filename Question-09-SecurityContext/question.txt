@@ -1,0 +1,36 @@
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║ QUESTION 9: Security Context - runAsUser & Privilege Escalation              ║
+╠═══════════════════════════════════════════════════════════════════════════════╣
+║ Weight: ~7%                                                                   ║
+║ Domain: Application Environment, Configuration, and Security                 ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+SCENARIO:
+---------
+An existing deployment needs security hardening by setting appropriate 
+security context configurations.
+
+TASKS:
+------
+Edit the deployment "secure-app" in namespace "codel" to add:
+
+1. At the POD level (spec.template.spec.securityContext):
+   - runAsUser: 30000
+
+2. At the CONTAINER level (spec.template.spec.containers[].securityContext):
+   - allowPrivilegeEscalation: false
+
+NAMESPACE:
+----------
+codel
+
+HINTS:
+------
+• runAsUser goes in the POD-level securityContext
+• allowPrivilegeEscalation goes in the CONTAINER-level securityContext
+• Use kubectl edit deployment secure-app -n codel
+• K8s docs: search "security context"
+
+VERIFICATION:
+-------------
+When complete, run: ./scripts/run-question.sh Question-09 verify
