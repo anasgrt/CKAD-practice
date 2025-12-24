@@ -2,8 +2,8 @@
 
 Complete practice environment for 9 CKAD exam questions extracted from JayDemy's YouTube series.
 
-**Source:** JayDemy YouTube Channel  
-**Playlist:** CKAD Exam Series  
+**Source:** JayDemy YouTube Channel
+**Playlist:** CKAD Exam Series
 **Total Questions:** 9
 
 ## Prerequisites

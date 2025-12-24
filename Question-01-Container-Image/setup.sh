@@ -13,7 +13,7 @@ mkdir -p /tmp/ckad-output
 
 # Create a sample Dockerfile
 cat > "$WORK_DIR/Dockerfile" << 'EOF'
-FROM nginx:alpine
+FROM docker.io/library/nginx:alpine
 LABEL maintainer="ckad-practice"
 RUN echo "<h1>CKAD Practice - Container Build Test</h1>" > /usr/share/nginx/html/index.html
 EXPOSE 80
