@@ -9,21 +9,21 @@ echo "🔍 Checking your answer..."
 echo ""
 
 # Check 1: Image exists
-echo -n "1. Checking if image 'ckad-app:1.0' exists... "
+echo -n "1. Checking if image 'demacu:3.0' exists... "
 if command -v podman &> /dev/null; then
-    if podman images | grep -q "ckad-app.*1.0"; then
+    if podman images | grep -q "demacu.*3.0"; then
         echo "✅ PASS"
     else
         echo "❌ FAIL"
-        ERRORS+="   - Image 'ckad-app:1.0' not found in podman\n"
+        ERRORS+="   - Image 'demacu:3.0' not found in podman\n"
         PASS=false
     fi
 elif command -v docker &> /dev/null; then
-    if docker images | grep -q "ckad-app.*1.0"; then
+    if docker images | grep -q "demacu.*3.0"; then
         echo "✅ PASS"
     else
         echo "❌ FAIL"
-        ERRORS+="   - Image 'ckad-app:1.0' not found in docker\n"
+        ERRORS+="   - Image 'demacu:3.0' not found in docker\n"
         PASS=false
     fi
 else
@@ -31,19 +31,19 @@ else
 fi
 
 # Check 2: Export file exists
-echo -n "2. Checking if export file exists at /tmp/ckad-output/ckad-app.tar... "
-if [ -f "/tmp/ckad-output/ckad-app.tar" ]; then
+echo -n "2. Checking if export file exists at /tmp/ckad-output/demacu.tar... "
+if [ -f "/tmp/ckad-output/demacu.tar" ]; then
     echo "✅ PASS"
 else
     echo "❌ FAIL"
-    ERRORS+="   - Export file /tmp/ckad-output/ckad-app.tar not found\n"
+    ERRORS+="   - Export file /tmp/ckad-output/demacu.tar not found\n"
     PASS=false
 fi
 
 # Check 3: File is a valid archive
 echo -n "3. Checking if export file is a valid tar archive... "
-if [ -f "/tmp/ckad-output/ckad-app.tar" ]; then
-    if tar -tf /tmp/ckad-output/ckad-app.tar &> /dev/null; then
+if [ -f "/tmp/ckad-output/demacu.tar" ]; then
+    if tar -tf /tmp/ckad-output/demacu.tar &> /dev/null; then
         echo "✅ PASS"
     else
         echo "❌ FAIL"
@@ -57,8 +57,8 @@ fi
 
 # Check 4: OCI format (check for oci-layout file)
 echo -n "4. Checking if export is in OCI format... "
-if [ -f "/tmp/ckad-output/ckad-app.tar" ]; then
-    if tar -tf /tmp/ckad-output/ckad-app.tar 2>/dev/null | grep -q "oci-layout\|index.json"; then
+if [ -f "/tmp/ckad-output/demacu.tar" ]; then
+    if tar -tf /tmp/ckad-output/demacu.tar 2>/dev/null | grep -q "oci-layout\|index.json"; then
         echo "✅ PASS"
     else
         echo "⚠️  WARNING (may be Docker format instead of OCI)"

@@ -13,7 +13,7 @@ TASKS:
 ------
 1. Create a secret named "db-credentials" in the default namespace with:
    - Key: username, Value: admin
-   - Key: password, Value: secretpass123
+   - Key: password, Value: testpassword
 
 2. Create a pod with the following specifications:
    - Pod name: env-secret-pod

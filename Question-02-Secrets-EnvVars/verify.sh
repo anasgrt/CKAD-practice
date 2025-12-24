@@ -33,11 +33,11 @@ fi
 echo -n "3. Checking secret values are correct... "
 USERNAME=$(kubectl get secret db-credentials -o jsonpath='{.data.username}' 2>/dev/null | base64 -d 2>/dev/null)
 PASSWORD=$(kubectl get secret db-credentials -o jsonpath='{.data.password}' 2>/dev/null | base64 -d 2>/dev/null)
-if [ "$USERNAME" = "admin" ] && [ "$PASSWORD" = "secretpass123" ]; then
+if [ "$USERNAME" = "admin" ] && [ "$PASSWORD" = "testpassword" ]; then
     echo "✅ PASS"
 else
     echo "❌ FAIL"
-    ERRORS+="   - Secret values incorrect (expected username=admin, password=secretpass123)\n"
+    ERRORS+="   - Secret values incorrect (expected username=admin, password=testpassword)\n"
     PASS=false
 fi
 
@@ -86,11 +86,11 @@ fi
 
 echo -n "8. Checking DB_PASSWORD env var... "
 DB_PASS=$(kubectl exec env-secret-pod -- env 2>/dev/null | grep "^DB_PASSWORD=" | cut -d= -f2)
-if [ "$DB_PASS" = "secretpass123" ]; then
+if [ "$DB_PASS" = "testpassword" ]; then
     echo "✅ PASS"
 else
     echo "❌ FAIL"
-    ERRORS+="   - DB_PASSWORD='$DB_PASS', expected 'secretpass123'\n"
+    ERRORS+="   - DB_PASSWORD='$DB_PASS', expected 'testpassword'\n"
     PASS=false
 fi
 

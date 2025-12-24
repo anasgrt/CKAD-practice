@@ -1,6 +1,10 @@
-# CKAD 2025 Practice Lab - JayDemy Series
+# CKAD 2025 Exam Questions & Answers - JayDemy Series
 
 Complete practice environment for 9 CKAD exam questions extracted from JayDemy's YouTube series.
+
+**Source:** JayDemy YouTube Channel  
+**Playlist:** CKAD Exam Series  
+**Total Questions:** 9
 
 ## Prerequisites
 

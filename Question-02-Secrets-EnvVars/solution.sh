@@ -6,7 +6,7 @@
 # Step 1: Create the secret
 kubectl create secret generic db-credentials \
   --from-literal=username=admin \
-  --from-literal=password=secretpass123
+  --from-literal=password=testpassword
 
 # Step 2: Create pod manifest
 cat <<EOF | kubectl apply -f -

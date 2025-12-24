@@ -18,14 +18,14 @@ else
     PASS=false
 fi
 
-# Check 2: Pod template has tier=frontend label
-echo -n "2. Checking pod template has 'tier=frontend' label... "
-TIER_LABEL=$(kubectl get deployment november-2025-deployment -n november-2025 -o jsonpath='{.spec.template.metadata.labels.tier}' 2>/dev/null)
-if [ "$TIER_LABEL" = "frontend" ]; then
+# Check 2: Pod template has key=value label
+echo -n "2. Checking pod template has 'key=value' label... "
+KEY_LABEL=$(kubectl get deployment november-2025-deployment -n november-2025 -o jsonpath='{.spec.template.metadata.labels.key}' 2>/dev/null)
+if [ "$KEY_LABEL" = "value" ]; then
     echo "✅ PASS"
 else
     echo "❌ FAIL"
-    ERRORS+="   - Pod template missing 'tier=frontend' label (got: '$TIER_LABEL')\n"
+    ERRORS+="   - Pod template missing 'key=value' label (got: '$KEY_LABEL')\n"
     PASS=false
 fi
 
@@ -61,36 +61,36 @@ else
     PASS=false
 fi
 
-# Check 6: Target port is 80
-echo -n "6. Checking target port is 80... "
+# Check 6: Target port is 8080
+echo -n "6. Checking target port is 8080... "
 TARGET_PORT=$(kubectl get svc berry -n november-2025 -o jsonpath='{.spec.ports[0].targetPort}' 2>/dev/null)
-if [ "$TARGET_PORT" = "80" ]; then
+if [ "$TARGET_PORT" = "8080" ]; then
     echo "✅ PASS"
 else
     echo "❌ FAIL"
-    ERRORS+="   - Target port is '$TARGET_PORT', expected '80'\n"
+    ERRORS+="   - Target port is '$TARGET_PORT', expected '8080'\n"
     PASS=false
 fi
 
-# Check 7: Service selector matches tier=frontend
-echo -n "7. Checking service selector has 'tier=frontend'... "
-SELECTOR=$(kubectl get svc berry -n november-2025 -o jsonpath='{.spec.selector.tier}' 2>/dev/null)
-if [ "$SELECTOR" = "frontend" ]; then
+# Check 7: Service selector matches key=value
+echo -n "7. Checking service selector has 'key=value'... "
+SELECTOR=$(kubectl get svc berry -n november-2025 -o jsonpath='{.spec.selector.key}' 2>/dev/null)
+if [ "$SELECTOR" = "value" ]; then
     echo "✅ PASS"
 else
     echo "❌ FAIL"
-    ERRORS+="   - Service selector missing 'tier=frontend'\n"
+    ERRORS+="   - Service selector missing 'key=value'\n"
     PASS=false
 fi
 
 # Check 8: 4 pods running
 echo -n "8. Checking 4 pods are running... "
-RUNNING_PODS=$(kubectl get pods -n november-2025 -l tier=frontend --field-selector=status.phase=Running --no-headers 2>/dev/null | wc -l)
+RUNNING_PODS=$(kubectl get pods -n november-2025 -l key=value --field-selector=status.phase=Running --no-headers 2>/dev/null | wc -l)
 if [ "$RUNNING_PODS" -eq 4 ]; then
     echo "✅ PASS"
 else
     echo "❌ FAIL"
-    ERRORS+="   - $RUNNING_PODS pods running with tier=frontend, expected 4\n"
+    ERRORS+="   - $RUNNING_PODS pods running with key=value, expected 4\n"
     PASS=false
 fi
 

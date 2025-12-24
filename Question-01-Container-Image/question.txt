@@ -12,13 +12,13 @@ There is a Dockerfile already prepared at /tmp/ckad-q1/Dockerfile
 TASKS:
 ------
 1. Build a container image using the Dockerfile with:
-   - Image name: ckad-app
-   - Tag: 1.0
+   - Image name: demacu
+   - Tag: 3.0
 
 2. Do NOT push the image to any registry
 
 3. Export the built container image in OCI format and store it at:
-   /tmp/ckad-output/ckad-app.tar
+   /tmp/ckad-output/demacu.tar
 
 TOOLS:
 ------

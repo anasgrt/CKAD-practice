@@ -7,7 +7,7 @@
 kubectl edit deployment november-2025-deployment -n november-2025
 # OR use patch:
 kubectl patch deployment november-2025-deployment -n november-2025 --type='json' -p='[
-  {"op": "add", "path": "/spec/template/metadata/labels/tier", "value": "frontend"},
+  {"op": "add", "path": "/spec/template/metadata/labels/key", "value": "value"},
   {"op": "replace", "path": "/spec/replicas", "value": 4}
 ]'
 
@@ -24,16 +24,16 @@ metadata:
 spec:
   type: NodePort
   selector:
-    tier: frontend
+    key: value
   ports:
   - port: 8080
-    targetPort: 80
+    targetPort: 8080
     protocol: TCP
 EOF
 
 # Step 3: Verify
 kubectl get deployment -n november-2025
-kubectl get pods -n november-2025 -l tier=frontend
+kubectl get pods -n november-2025 -l key=value
 kubectl get svc berry -n november-2025
 
 #===============================================================================
